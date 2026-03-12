@@ -1,0 +1,95 @@
+### 1. GET All Employees
+# Roles: Manager, HR
+GET https://localhost:8443/api/employees
+Accept: application/json
+
+---
+
+### 2. GET Employee by ID
+# Roles: Manager, HR
+GET https://localhost:8443/api/employees/1
+Accept: application/json
+
+---
+
+### 3. POST Create a New Employee
+# Roles: HR Only
+POST https://localhost:8443/api/employees
+Content-Type: application/json
+
+{
+  "name": "Alice Johnson",
+  "contractType": "Full-Time",
+  "startDate": "2023-05-15",
+  "salary": 55000.0,
+  "email": "alice.johnson@example.com"
+}
+
+---
+
+### 4. PUT Update an Employee
+# Roles: HR Only
+PUT https://localhost:8443/api/employees/1
+Content-Type: application/json
+
+{
+  "name": "Alice Johnson",
+  "contractType": "Permanent",
+  "startDate": "2023-05-15",
+  "salary": 60000.0,
+  "email": "alice.j.new@example.com"
+}
+
+---
+
+### 5. DELETE an Employee
+# Roles: HR Only
+DELETE https://localhost:8443/api/employees/1
+
+---
+
+### 6. GET All Departments
+# Roles: Manager, HR
+# Note: URL is /api/api/departments because of the double mapping in your controller
+GET https://localhost:8443/api/api/departments
+Accept: application/json
+
+---
+
+### 7. POST Create a New Department
+# Roles: HR Only
+POST https://localhost:8443/api/api/departments
+Content-Type: application/json
+
+{
+  "name": "Logistics",
+  "budget": 150000.0,
+  "location": "Warehouse A"
+}
+
+---
+
+### 8. POST Assign an Employee to a Department
+# Roles: HR Only
+POST https://localhost:8443/api/api/assignments
+Content-Type: application/json
+
+{
+  "role": "AssignmentTest",
+  "accessLevel": "HighestLevel",
+  "employeeId": 1,
+  "departmentId": 1
+}
+
+---
+
+### 9. DELETE an Assignment
+# Roles: HR Only
+DELETE https://localhost:8443/api/api/assignments/1
+
+---
+
+### 10. PUT Promote an Employee
+# Roles: HR Only
+# Note: No JSON body is needed for this endpoint as it only relies on the ID in the URL
+PUT https://localhost:8443/api/api/employees/1/promote
